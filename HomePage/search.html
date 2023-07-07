@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Candidates</title>
+  <style>
+    /* CSS styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+    
+    header {
+      background-color: #3f51b5;
+      padding: 20px;
+      color: #fff;
+      text-align: center;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    
+    form {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    input[type="text"] {
+      padding: 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #3f51b5;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #2c3e99;
+    }
+    
+    #results-section,
+    #evaluation-section {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    
+    #results-section h2,
+    #evaluation-section h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #3f51b5;
+    }
+    
+    #candidates-list,
+    #evaluation-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .candidate-item,
+    .evaluation-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f2f2f2;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    
+    .candidate-item:hover,
+    .evaluation-item:hover {
+      background-color: #e6e6e6;
+    }
+    
+    .candidate-item h3,
+    .evaluation-item h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #3f51b5;
+    }
+    
+    .candidate-item p,
+    .evaluation-item p {
+      margin: 5px 0;
+      color: #555;
+    }
+    
+    .candidate-item button,
+    .evaluation-item button {
+      padding: 5px 10px;
+      background-color: #3f51b5;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .candidate-item button:hover,
+    .evaluation-item button:hover {
+      background-color: #2c3e99;
+    }
+
+    .nav a {
+        padding: 10px;
+        text-align: center;
+    }
+   
+  </style>
+</head>
+<body>
+  <header>
+      <h1>Job Candidates</h1>
+      <form id="search-form">
+          <input type="text" id="location-input" placeholder="Location">
+          <input type="text" id="job-role-input" placeholder="Job Role">
+          <button type="submit">Search</button>
+        </form>
+    </header>
+    
+    <section id="results-section">
+        <h2>Search Results</h2>
+        <div id="candidates-list"></div>
+    </section>
+    
+    <section id="evaluation-section">
+        <h2>Evaluation</h2>
+        <ul id="evaluation-list"></ul>
+    </section>
+    <nav class="nav">
+        <a href="home.html">Back to Home</a>
+      </nav>
+    
+  <script>
+    // JavaScript code
+    const candidates = [
+  {
+    id: 1,
+    name: 'John Doe',
+    location: 'New York',
+    jobRole: 'Software Engineer',
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    location: 'San Francisco',
+    jobRole: 'UI/UX Designer',
+  },
+  {
+    id: 3,
+    name: 'Mike Johnson',
+    location: 'Chicago',
+    jobRole: 'Data Analyst',
+  },
+  {
+    id: 4,
+    name: 'Emily Davis',
+    location: 'Los Angeles',
+    jobRole: 'Marketing Specialist',
+  },
+  {
+    id: 5,
+    name: 'David Wilson',
+    location: 'Seattle',
+    jobRole: 'Product Manager',
+  },
+
+];
+
+
+    const searchForm = document.getElementById('search-form');
+    const locationInput = document.getElementById('location-input');
+    const jobRoleInput = document.getElementById('job-role-input');
+    const candidatesList = document.getElementById('candidates-list');
+    const evaluationList = document.getElementById('evaluation-list');
+
+    searchForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const locationValue = locationInput.value.toLowerCase();
+      const jobRoleValue = jobRoleInput.value.toLowerCase();
+
+      const filteredCandidates = candidates.filter(candidate => {
+        const candidateLocation = candidate.location.toLowerCase();
+        const candidateJobRole = candidate.jobRole.toLowerCase();
+        return candidateLocation.includes(locationValue) && candidateJobRole.includes(jobRoleValue);
+      });
+
+      displayCandidates(filteredCandidates);
+    });
+
+    function displayCandidates(candidates) {
+      candidatesList.innerHTML = '';
+
+      if (candidates.length === 0) {
+        candidatesList.innerHTML = '<li>No candidates found.</li>';
+        return;
+      }
+
+      candidates.forEach(candidate => {
+        const candidateItem = document.createElement('li');
+        candidateItem.classList.add('candidate-item');
+        candidateItem.innerHTML = `
+          <h3>${candidate.name}</h3>
+          <p>Location: ${candidate.location}</p>
+          <p>Job Role: ${candidate.jobRole}</p>
+          <button onclick="addEvaluation(${candidate.id})">Add to Evaluation</button>
+        `;
+        candidatesList.appendChild(candidateItem);
+      });
+    }
+
+    function addEvaluation(candidateId) {
+      const candidate = candidates.find(candidate => candidate.id === candidateId);
+
+      const evaluationItem = document.createElement('li');
+      evaluationItem.classList.add('evaluation-item');
+      evaluationItem.innerHTML = `
+        <h3>${candidate.name}</h3>
+        <p>Location: ${candidate.location}</p>
+        <p>Job Role: ${candidate.jobRole}</p>
+        <button onclick="removeEvaluation(${candidate.id})">Remove from Evaluation</button>
+      `;
+      evaluationList.appendChild(evaluationItem);
+    }
+
+    function removeEvaluation(candidateId) {
+      const evaluationItem = document.querySelector(`#evaluation-list li[data-candidate-id="${candidateId}"]`);
+      if (evaluationItem) {
+        evaluationItem.remove();
+      }
+    }
+  </script>
+</body>
+</html>
