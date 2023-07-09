@@ -76,3 +76,29 @@ body {
       height: 100px;
       margin-bottom: 10px;
     }
+
+    .footer {
+      background-color: rgb(20, 20, 43);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .footer p {
+      margin: 0;
+    }
+    
+    .footer nav {
+      margin-top: 10px;
+    }
+    
+    .footer nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    .footer nav a:hover {
+      text-decoration: underline;
+    }
+    

@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job_Solutions</title>
-    <link rel="stylesheet" href="./style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job_Solutions</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo">mma</a>
-    <nav class="nav"> 
-        <a href="#">Home</a>
-        <a href="user-login.html">Log In</a>
-        <a href="#">About</a>
-        <a href="search.html">Tech for hire</a>
-        <a href="#"><span>Get in touch</span> </a>
+  <header class="header">
+    <a href="#" class="logo">mma</a>
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="user-login.html">Log In</a>
+      <a href="#">About</a>
+      <a href="search.html">Tech for hire</a>
+      <a href="#"><span>Get in touch</span></a>
     </nav>
-</header>
-<div class="first">
-    <h1 >Let us land you your <span> dream job.</span></h1>
-<p>Easy job posting and distribution for maximum visibility.
-Centralized candidate management for efficient sorting and shortlisting.
-Applicant Tracking System (ATS) for streamlined progress tracking.
-Screening and assessment tools for objective candidate evaluation.
-</p>
-<p>Collaboration and communication features for seamless teamwork.
-    Data analytics and reporting for data-driven decision-making.
-    Integration with HR systems for data flow optimization.
-    Mobile accessibility for on-the-go recruitment management.
-    Improved candidate experience for enhanced employer brand.
-    Cost and time savings through automation and efficiency.
-</p>
-</div>
-<div id="services"></div>
-</body>
-<script>
+  </header>
+
+  <div class="first">
+    <h1>Let us land you your <span>dream job.</span></h1>
+    <p>Easy job posting and distribution for maximum visibility.
+      Centralized candidate management for efficient sorting and shortlisting.
+      Applicant Tracking System (ATS) for streamlined progress tracking.
+      Screening and assessment tools for objective candidate evaluation.
+    </p>
+    <p>Collaboration and communication features for seamless teamwork.
+      Data analytics and reporting for data-driven decision-making.
+      Integration with HR systems for data flow optimization.
+      Mobile accessibility for on-the-go recruitment management.
+      Improved candidate experience for enhanced employer brand.
+      Cost and time savings through automation and efficiency.
+    </p>
+  </div>
+
+  <div id="services"></div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2023 Job Solutions. All rights reserved.</p>
+      <nav>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // JavaScript code
     const data = [
       {
         "serviceId": "1",
@@ -76,30 +89,30 @@ Screening and assessment tools for objective candidate evaluation.
     ];
     const servicesContainer = document.getElementById('services');
 
-data.forEach(service => {
-  const { serviceName, description, image } = service;
+    data.forEach(service => {
+      const { serviceName, description, image } = service;
 
-  const serviceElement = document.createElement('div');
-  serviceElement.classList.add('service');
+      const serviceElement = document.createElement('div');
+      serviceElement.classList.add('service');
 
-  if (image) {
-    const imageElement = document.createElement('img');
-    imageElement.src = image;
-    imageElement.alt = serviceName;
-    imageElement.classList.add('service-image');
-    serviceElement.appendChild(imageElement);
-  }
+      if (image) {
+        const imageElement = document.createElement('img');
+        imageElement.src = image;
+        imageElement.alt = serviceName;
+        imageElement.classList.add('service-image');
+        serviceElement.appendChild(imageElement);
+      }
 
-  const serviceNameElement = document.createElement('h3');
-  serviceNameElement.textContent = serviceName;
-  const descriptionElement = document.createElement('p');
-  descriptionElement.textContent = description;
+      const serviceNameElement = document.createElement('h3');
+      serviceNameElement.textContent = serviceName;
+      const descriptionElement = document.createElement('p');
+      descriptionElement.textContent = description;
 
-  serviceElement.appendChild(serviceNameElement);
-  serviceElement.appendChild(descriptionElement);
+      serviceElement.appendChild(serviceNameElement);
+      serviceElement.appendChild(descriptionElement);
 
-  servicesContainer.appendChild(serviceElement);
-});
-</script>
-
+      servicesContainer.appendChild(serviceElement);
+    });
+  </script>
+</body>
 </html>
